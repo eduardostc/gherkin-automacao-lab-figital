@@ -1,0 +1,9 @@
+Eu implementei os seguintes casos de teste:
+ 12. Caso de Teste: Validação de e-mail inválido no formulário Rede_Transformação_Digital
+ 13. Caso de Teste: Injeção de script na tela de login
+ 17. Caso de Teste: Redirecionamento para a tela inicial ao clicar em "Voltar" - Formulário Rede de Transformação Digital
+
+Remove-Item venv -Recurse -Force
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
