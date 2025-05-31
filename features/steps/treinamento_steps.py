@@ -21,6 +21,7 @@ def clicar_botao_voltar_formulario(context):
 
 @then(u'o sistema deve redirecionar para a página inicial')
 def validar_redirecionamento_pagina_inicial(context):
+    #assert False
     wait = WebDriverWait(get_driver(), 10)
     wait.until(EC.url_to_be("https://laboratoriofigital.recife.pe.gov.br/"))
     assert get_driver().current_url == "https://laboratoriofigital.recife.pe.gov.br/"
@@ -47,6 +48,7 @@ def clicar_em_enviar(context):
 
 @then(u'o sistema deve exibir uma mensagem de "E-mail inválido"')
 def validar_mensagem_email_invalido(context):
+    #assert False
     mensagem_erro = obter_mensagem_erro_email()
     assert "Inclua um \"@\"" in mensagem_erro or "@" in mensagem_erro, f"Mensagem de erro não encontrada: {mensagem_erro}"
 
@@ -74,6 +76,7 @@ def clicar_botao_entrar(context):
 
 @then(u'o sistema não deve executar nenhum script malicioso')
 def validar_ausencia_execucao_script_malicioso(context):
+    #assert False
     assert "login" in get_driver().current_url or get_driver().title.lower().find("login") != -1 # Verificar se estar na página de login
 
     valor_campo = get_driver().find_element(By.CSS_SELECTOR, CAMPO_LOGIN_EMAIL).get_attribute("value") # Verificar que o campo de usuário contém o texto injetado
