@@ -1,8 +1,9 @@
 from features.helpers.driver import get_driver
 from features.pages.base_page import find_element
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
+from features.pages.base_page import *
 
 ##################### MAPEANDO CAMPOS NA TELA #####################################
 
@@ -19,6 +20,15 @@ BOTAO_ENVIAR = "form button[type='submit']" #"body > div > div > div > div > for
 BOTAO_AREA_RESTRITA = ".btn-warning"
 BOTAO_ENTRAR = "button.btn.btn-warning"
 CAMPO_SENHA = "#password"
+
+CAMPO_WHATSAPP = "#id_telefone"
+CAMPO_PROBLEMA = "#id_problema_urgente"
+BOTAO_CLICK_ME = "button.btn-primary.w-100"
+MENSAGEM_SUCESSO_FORM = "div.alert.alert-success"
+CAMPO_EMAILLOGIN = "#email"
+BUTTON_LOG = "button.btn.btn-warning.w-100"
+MENSAGEM_ERRO_LOGIN = "div.alert.alert-danger.text-center"
+MENSAGEM_BOAS_VINDAS_CSS = "span.navbar-text"
 
 ################## VARIAVEIS PARA AJUDAR O TESTE #####################################################
 texto_email = "cers"
@@ -86,6 +96,63 @@ def preencher_campo_senha(texto_senha):
 def clicar_no_botao_entrar():
     botao_entrar = find_element(BOTAO_ENVIAR)
     botao_entrar.click()
+############################
+    ##########LUIZ
+###########################
+def get_campo_nome():
+    return find_element(CAMPO_NOME)
 
+def get_campo_secretaria():
+    return find_element(CAMPO_SECRETARIA)
+
+def get_campo_cargo():
+    return find_element(CAMPO_CARGO)
+
+def get_campo_email():
+    return find_element(CAMPO_EMAIL)
+
+def get_campo_whatsap():
+    return find_element(CAMPO_WHATSAPP)
+
+def get_campo_problema():
+    return find_element(CAMPO_PROBLEMA)
+
+def get_botao_click_me():
+    return find_element(BOTAO_CLICK_ME)
+
+def obter_mensagem_sucesso_formulario():
+    driver = get_driver()
+    wait = WebDriverWait(driver, 10)
+    mensagem_element = wait.until(
+        EC.visibility_of_element_located((By.CSS_SELECTOR, MENSAGEM_SUCESSO_FORM))
+    )
+    return mensagem_element.text.strip()
+
+# ____________________________________________________________________________________
+def get_campo_emaillogin():
+    return find_element(CAMPO_EMAILLOGIN)
+
+def get_campo_senha():
+    return find_element(CAMPO_SENHA)
+
+def get_button_login():
+    find_element(BUTTON_LOG).click()
+
+def obter_mensagem_erro_login_invalido():
+    driver = get_driver()
+    wait = WebDriverWait(driver, 10)
+    mensagem_element = wait.until(
+        EC.visibility_of_element_located((By.CSS_SELECTOR, MENSAGEM_ERRO_LOGIN))
+    )
+    return mensagem_element.text.strip()
+
+#___________________________________________________________________________
+def obter_texto_mensagem_boas_vindas():
+    driver = get_driver()
+    wait = WebDriverWait(driver, 10) # Espera até 10 segundos
+    mensagem_element = wait.until(
+        EC.visibility_of_element_located((By.CSS_SELECTOR, MENSAGEM_BOAS_VINDAS_CSS))
+    )
+    return mensagem_element.text.strip() # .strip() remove espaços em branco extras
 
 
